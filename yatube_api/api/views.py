@@ -1,6 +1,7 @@
 from rest_framework import filters, mixins, permissions, serializers, viewsets
 
 from posts.models import Follow, Group, Post
+from .permissions import AuthorOrReadOnly, ReadOnly
 from .serializers import (
     FollowSerializer,
     GroupSerializer,
@@ -24,9 +25,15 @@ class GroupViewSet(viewsets.ModelViewSet):
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+    permission_classes = (AuthorOrReadOnly,)
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
+
+    def get_permissions(self):
+        if self.action == 'retrieve':
+            return (ReadOnly(),)
+        return super().get_permissions()
 
 
 class FollowViewSet(CreateListViewSet):
