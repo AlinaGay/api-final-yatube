@@ -1,4 +1,4 @@
-from rest_framework import mixins, permissions, serializers, viewsets
+from rest_framework import filters, mixins, permissions, serializers, viewsets
 
 from posts.models import Follow, Group, Post
 from .serializers import (
@@ -32,6 +32,8 @@ class PostViewSet(viewsets.ModelViewSet):
 class FollowViewSet(CreateListViewSet):
     serializer_class = FollowSerializer
     permission_classes = (permissions.IsAuthenticated,)
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('following__username',)
 
     def get_queryset(self):
         return Follow.objects.filter(user=self.request.user)
