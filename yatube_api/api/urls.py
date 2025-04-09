@@ -5,7 +5,7 @@ from rest_framework.authtoken import views
 from .views import FollowViewSet, GroupViewSet, PostViewSet
 
 api_router = DefaultRouter()
-api_router.register('follow', FollowViewSet)
+api_router.register('follow', FollowViewSet, basename='follow')
 api_router.register('groups', GroupViewSet)
 api_router.register('posts', PostViewSet)
 

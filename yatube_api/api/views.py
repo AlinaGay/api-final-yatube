@@ -1,6 +1,6 @@
-from rest_framework import mixins, viewsets
+from rest_framework import mixins, permissions, serializers, viewsets
 
-from posts.models import Group, Post, User
+from posts.models import Follow, Group, Post
 from .serializers import (
     FollowSerializer,
     GroupSerializer,
@@ -14,6 +14,7 @@ class CreateListViewSet(
     viewsets.GenericViewSet
 ):
     pass
+
 
 class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
@@ -29,5 +30,17 @@ class PostViewSet(viewsets.ModelViewSet):
 
 
 class FollowViewSet(CreateListViewSet):
-    queryset = User.objects.all()
     serializer_class = FollowSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get_queryset(self):
+        return Follow.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        following = serializer.validated_data['following']
+        if self.request.user == following:
+            raise serializers.ValidationError(
+                "You already follow this author."
+            )
+        serializer.save(user=self.request.user, following=following)
+
