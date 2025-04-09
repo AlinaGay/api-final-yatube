@@ -1,8 +1,19 @@
-from rest_framework import viewsets
+from rest_framework import mixins, viewsets
 
-from posts.models import Group, Post
-from .serializers import CommentSerializer, GroupSerializer, PostSerializer
+from posts.models import Group, Post, User
+from .serializers import (
+    FollowSerializer,
+    GroupSerializer,
+    PostSerializer
+)
 
+
+class CreateListViewSet(
+    mixins.CreateModelMixin,
+    mixins.ListModelMixin,
+    viewsets.GenericViewSet
+):
+    pass
 
 class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
@@ -17,3 +28,6 @@ class PostViewSet(viewsets.ModelViewSet):
         serializer.save(author=self.request.user)
 
 
+class FollowViewSet(CreateListViewSet):
+    queryset = User.objects.all()
+    serializer_class = FollowSerializer

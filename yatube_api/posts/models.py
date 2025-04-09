@@ -9,6 +9,9 @@ class Group(models.Model):
     slug = models.SlugField(max_length=64, unique=True)
     description = models.TextField()
 
+    def __str__(self):
+        return self.title
+
 
 class Post(models.Model):
     text = models.TextField()
@@ -37,3 +40,30 @@ class Comment(models.Model):
     text = models.TextField()
     created = models.DateTimeField(
         'Дата добавления', auto_now_add=True, db_index=True)
+
+    def __str__(self):
+        return self.text
+
+
+class Follow(models.Model):
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="follower"
+    )
+    following = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="following"
+    )
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['user', 'following'],
+                name='unique_follow'
+            ),
+            models.CheckConstraint(
+                check=~models.Q(user=models.F('following')),
+                name='prevent_self_follow'
+            )
+        ]
+
+    def __str__(self):
+        return f'follower: {self.user}, following: {self.following}'

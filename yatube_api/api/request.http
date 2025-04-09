@@ -54,3 +54,9 @@ Content-Type: application/json
   "image": null,
   "group": null
 }
+
+###
+
+GET http://127.0.0.1:8000/api/v1/groups/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0MjExNzU2LCJpYXQiOjE3NDQxMjUzNTYsImp0aSI6ImFhMTY3M2IzODAwODQyYWU5YzNmMTBiYzg4MmI2MTNjIiwidXNlcl9pZCI6MX0.dTz9juMuZhODEMx1Uf8XAIvxMcXf-q9M2vLz_TsLZgY
+Content-Type: application/json
