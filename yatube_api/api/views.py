@@ -24,20 +24,6 @@ class CreateListViewSet(
     pass
 
 
-class ListViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
-    pass
-
-
-class DetailViewSet(
-    mixins.CreateModelMixin,
-    mixins.RetrieveModelMixin,
-    mixins.UpdateModelMixin,
-    mixins.DestroyModelMixin,
-    viewsets.GenericViewSet
-):
-    pass
-
-
 class GroupViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
