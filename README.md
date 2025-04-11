@@ -92,7 +92,7 @@ http://127.0.0.1:8000/redoc/
 Для тестирования API можно использовать:
 - Postman коллекцию (лежит в `/postman_collection/API_for_yatube.postman_collection.json`)
 
-## 👩‍💻 Автор
+### Автор
 
 | [Alina Opolskaia](https://github.com/AlinaGay/) |
 | Backend Developer • Python Engineer  
