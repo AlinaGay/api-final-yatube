@@ -28,8 +28,11 @@ class Post(models.Model):
         related_name='posts'
     )
 
+    class Meta:
+        ordering = ['-pub_date']
+
     def __str__(self):
-        return self.text
+        return self.text[:100] + ('...' if len(self.text) > 100 else '')
 
 
 class Comment(models.Model):
