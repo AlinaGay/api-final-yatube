@@ -1,22 +1,17 @@
-# api_final
-### API для Yatube
+# api_final  
+API for Yatube  
 
-Yatube — это платформа для блогов. Этот блог-сервис предполагает возможность зарегистрироваться, создать, отредактировать или удалить собственный пост, прокомментировать пост другого автора и подписаться на него.
+**Yatube** is a blogging platform that allows users to register, create, edit or delete their own posts, comment on other authors' posts, and follow them.
 
+## How to Run the Project
 
-### Как запустить проект:
-
-Клонировать репозиторий и перейти в него в командной строке:
-
-```
+Clone the repository and navigate into it in the command line:
+```bash
 git clone https://github.com/AlinaGay/api-final-yatube.git
-```
-
-```
 cd yatube_api
 ```
 
-Cоздать и активировать виртуальное окружение:
+Create and activate a virtual environment:
 
 ```
 python3 -m venv env
@@ -26,7 +21,7 @@ python3 -m venv env
 source env/bin/activate
 ```
 
-Установить зависимости из файла requirements.txt:
+Install the dependencies from the requirements.txt file:
 
 ```
 python3 -m pip install --upgrade pip
@@ -36,52 +31,52 @@ python3 -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-Выполнить миграции:
+Apply migrations:
 
 ```
 python3 manage.py migrate
 ```
 
-Запустить проект:
+Start the project:
 
 ```
 python3 manage.py runserver
 ```
 
-### Некоторые примеры запросов к API:
+### Some API Request Examples
 
-Чтобы посмотреть имеющиеся посты в блоге можно сделать GET-запрос на следующий URL:
+To view the existing blog posts, send a GET request to:
 
 ```
 http://127.0.0.1:8000/api/v1/posts/
 ```
-Чтобы посмотреть комментарии к конкретному посту можно сделать GET-запрос на следующий URL, поставив post_id  в запрос:
+To view comments on a specific post, send a GET request to (replace <post_id> with the desired post ID):
 ```
 http://127.0.0.1:8000/api/v1/posts/<post_id>/comments/
 ```
-По умолчанию проект запускается на порту:
+By default, the project runs on:
 
 ```
 http://127.0.0.1:8000
 ```
-Однако порт может быть изменен. В таком случае, необходимо подставить другой адрес порта в вышеуказанные примеры запросов.
+However, if you run the server on a different port, use that port in the URLs above.
 
-### Технологический стек
+### Tech Stack
 
 **Backend:**
 - Python 5.1.1
-- Django (веб-фреймворк)
+- Django (web framework)
 - Django REST Framework (REST API)
-- Djoser (аутентификация по JWT)
-- Pillow (обработка изображений)
+- Djoser (JWT authentication)
+- Pillow (image processing)
 
-**База данных:**
-- SQLite (разработка)
+**Database**
+- SQLite (for development)
 
 
-### Документация
+### Documentation
 
-После запуска проекта документация доступна:
+After starting the project, the documentation is available at:
 
 ```bash
 
@@ -89,10 +84,10 @@ http://127.0.0.1:8000
 http://127.0.0.1:8000/redoc/
 ```
 
-Для тестирования API можно использовать:
+For testing the API, you can use:
 - Postman коллекцию (лежит в `/postman_collection/API_for_yatube.postman_collection.json`)
 
-### Автор
+### Author
 
-| [Alina Opolskaia](https://github.com/AlinaGay/) |
+| [AlinaGay](https://github.com/AlinaGay/) |
 | Backend Developer • Python Engineer  
